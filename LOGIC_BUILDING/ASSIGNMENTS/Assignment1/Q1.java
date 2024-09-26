@@ -10,14 +10,7 @@ class Q1{
 				n=n/10;
 				res+=ans;
 		}
-		/* if(n==res)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		} */
+		
 		return res;
 		
 		
@@ -28,8 +21,9 @@ class Q1{
 			int n=sc.nextInt();
 			int count =0;
 			while (n>0){
-			n=n/10;
 			count++;
+			n=n/10;
+			
 		} 
 		
 		if(ArmstrongNumber(n,count)==n)
