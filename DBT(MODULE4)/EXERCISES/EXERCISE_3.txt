@@ -1,0 +1,116 @@
+EXERCISE 3:
+
+1. Display all the Supplier names with the initial letter capital.
+
+mysql> select concat(upper(substr(sname,1,1)),lower(substr(sname,2))) initcap from s;
++----------+
+| initcap  |
++----------+
+| Oriva    |
+| Crompton |
+| Usha     |
++----------+
+
+
+2. Display all the Supplier names in upper case.
+
+mysql> select upper(sname) from s;
++--------------+
+| upper(sname) |
++--------------+
+| ORIVA        |
+| CROMPTON     |
+| USHA         |
++--------------+
+
+
+3. Display all the Supplier names in lower case.
+
+mysql> select lower(sname) from s;
++--------------+
+| lower(sname) |
++--------------+
+| oriva        |
+| crompton     |
+| usha         |
++--------------+
+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left.
+
+
+5. Display all the Supplier names (with ‘O’ replaced by ‘##’).
+ HINT: REPLACE.
+
+mysql> select replace(sname,'O','##') from s;
++-------------------------+
+| replace(sname,'O','##') |
++-------------------------+
+| ##RIVA                  |
+| CR##MPT##N              |
+| USHA                    |
++-------------------------+
+
+
+
+
+6. Implement the above command such that ‘C’ is replaced with ‘R’ and ‘A’ is replaced
+with ‘O’.
+
+mysql> select replace(replace(sname,'A','O'),'C','R') from s;
++-----------------------------------------+
+| replace(replace(sname,'A','O'),'C','R') |
++-----------------------------------------+
+| ORIVO                                   |
+| RROMPTON                                |
+| USHO                                    |
++-----------------------------------------+
+
+
+7. Display the Supplier names and the lengths of the names.
+
+mysql> select sname,length(sname) from s;
++----------+---------------+
+| sname    | length(sname) |
++----------+---------------+
+| ORIVA    |             5 |
+| CROMPTON |             8 |
+| USHA     |             4 |
++----------+---------------+
+
+8. Use the soundex function to search for a supplier by the name of ‘OREVA’.
+
+mysql> select sname from S
+    -> where soundex (sname) = soundex('oreva');
++-------+
+| sname |
++-------+
+| ORIVA |
++-------+
+
+
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+
+mysql> select sname , status,
+    -> case
+    -> when status = 10 then 'Ten'
+    -> when status = 20 then 'Twenty'
+    -> when status = 30 then 'Thirty'
+    -> end 'res'
+    -> from s;
++----------+--------+--------+
+| sname    | status | res    |
++----------+--------+--------+
+| ORIVA    |     10 | Ten    |
+| CROMPTON |     20 | Twenty |
+| USHA     |     30 | Thirty |
++----------+--------+--------+
+
+
+10. Display the current day (e.g. Thursday)
+
+mysql> select dayname(sysdate()) from dual;
++--------------------+
+| dayname(sysdate()) |
++--------------------+
+| Saturday           |
++--------------------+

@@ -1,0 +1,168 @@
+EXERCISE 1:
+
+
+
+
+  
+{*} SUPPLIERS:
+mysql> create table S(`S#` varchar(10),Sname varchar(10),Status int, City varcha
+r(20));
+Query OK, 0 rows affected (1.58 sec)
+
+mysql> desc S;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| S#     | varchar(10) | YES  |     | NULL    |       |
+| Sname  | varchar(10) | YES  |     | NULL    |       |
+| Status | int         | YES  |     | NULL    |       |
+| City   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+
+
+{*} PARTS:
+mysql> create table P(`P#` varchar(10),Pname varchar(10),Color varchar(8), Weigh
+t decimal(6,2),City varchar(20));
+Query OK, 0 rows affected (1.76 sec)
+
+mysql> desc p;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| P#     | varchar(10)  | YES  |     | NULL    |       |
+| Pname  | varchar(10)  | YES  |     | NULL    |       |
+| Color  | varchar(8)   | YES  |     | NULL    |       |
+| Weight | decimal(6,2) | YES  |     | NULL    |       |
+| City   | varchar(20)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+
+{*} PROJECTS:
+mysql> create table J(`J#` varchar(10),Jname varchar(10),City varchar(20));
+Query OK, 0 rows affected (0.89 sec)
+
+mysql> desc J;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| J#    | varchar(10) | YES  |     | NULL    |       |
+| Jname | varchar(10) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+{*}SUPPLIER-PARTS-PROJECT
+mysql> create table SPJ(`S#` varchar(10),`P#` varchar(10),`J#` varchar(10),Qty int);
+Query OK, 0 rows affected (0.76 sec)
+
+mysql> desc SPJ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| S#    | varchar(10) | YES  |     | NULL    |       |
+| P#    | varchar(10) | YES  |     | NULL    |       |
+| J#    | varchar(10) | YES  |     | NULL    |       |
+| Qty   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+-------------------------------------------------------------
+{**} INSERTING THE VALUES INSIDE S TABLE
+mysql> insert into S(`S#`) values('S1'),('S2'),('S3'),('S4');
+Query OK, 4 rows affected (0.19 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from S;
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| S1   | NULL  |   NULL | NULL |
+| S2   | NULL  |   NULL | NULL |
+| S3   | NULL  |   NULL | NULL |
+| S4   | NULL  |   NULL | NULL |
++------+-------+--------+------+
+4 rows in set (0.00 sec)
+
+{**}INSERTING THE VALUES INSIDE P TABLE
+mysql> insert into P(`P#`) values('P1'),('P2'),('P3'),('P4');
+Query OK, 4 rows affected (0.18 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from P;
++------+-------+-------+--------+------+
+| P#   | Pname | Color | Weight | City |
++------+-------+-------+--------+------+
+| P1   | NULL  | NULL  |   NULL | NULL |
+| P2   | NULL  | NULL  |   NULL | NULL |
+| P3   | NULL  | NULL  |   NULL | NULL |
+| P4   | NULL  | NULL  |   NULL | NULL |
++------+-------+-------+--------+------+
+4 rows in set (0.00 sec)
+
+
+{**}INSERTING THE VALUES INSIDE J TABLE
+mysql> insert into J(`J#`) values('J1'),('J2'),('J3'),('J4');
+Query OK, 4 rows affected (0.11 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from J;
++------+-------+------+
+| J#   | Jname | City |
++------+-------+------+
+| J1   | NULL  | NULL |
+| J2   | NULL  | NULL |
+| J3   | NULL  | NULL |
+| J4   | NULL  | NULL |
++------+-------+------+
+4 rows in set (0.00 sec)
+
+{**}
+Display all the data from the S table. 
+
+mysql> select * from S;
++------+----------+--------+--------+
+| S#   | Sname    | Status | City   |
++------+----------+--------+--------+
+| S1   | ORIVA    |     10 | London |
+| S2   | CROMPTON |     20 | Paris  |
+| S3   | USHA     |     30 | Athens |
++------+----------+--------+--------+
+
+{**}
+Display only the S# and SNAME fields from the S table.
+
+mysql> select `S#` , sname from S;
++------+----------+
+| S#   | sname    |
++------+----------+
+| S1   | ORIVA    |
+| S2   | CROMPTON |
+| S3   | USHA     |
++------+----------+
+
+{**}
+Display the PNAME and COLOR from the P table for the CITY=”London”.
+
+mysql> select pname , color from P
+    -> where city = 'London';
++-------+-------+
+| pname | color |
++-------+-------+
+| Fan   | White |
++-------+-------+
+
+{**}
+Display all the Suppliers from London. 
+
+mysql> select * from S
+    -> where city ='London';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | ORIVA |     10 | London |
++------+-------+--------+--------+
+
